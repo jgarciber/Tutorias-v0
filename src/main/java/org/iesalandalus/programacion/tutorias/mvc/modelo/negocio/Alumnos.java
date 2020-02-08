@@ -1,8 +1,8 @@
 package org.iesalandalus.programacion.tutorias.mvc.modelo.negocio;
 
 import javax.naming.OperationNotSupportedException;
-
 import org.iesalandalus.programacion.tutorias.mvc.modelo.dominio.Alumno;
+import org.iesalandalus.programacion.tutorias.mvc.modelo.dominio.Tutoria;
 
 public class Alumnos {
 	private int capacidad;
@@ -17,12 +17,21 @@ public class Alumnos {
 		this.capacidad=capacidad;
 		this.tamano=0;
 		//Creo el array de citas con los objetos cita de longitud capacidad.
-		//Inicializo tamano(cantidad de citas guardadas) a 0 y la capacidad la inicializo al NUM_MAX_CITAS 
+		//Inicializo tamano(cantidad de citas guardadas) a 0 y la capacidad la inicializo a CAPACIDAD 
 		//que coincide con el parametro pasado capacidad
 	}
 	
 	public Alumno[] get() {
-		return coleccionAlumnos;
+		return copiaProfundaAlumnos();
+	}
+	
+	private Alumno[] copiaProfundaAlumnos() {
+		Alumno[] coleccionCopia= new Alumno[capacidad];
+		for (int i=0; i<tamano;i++) {
+			coleccionCopia[i]= new Alumno(coleccionAlumnos[i]);
+		}
+		
+		return coleccionCopia;
 	}
 	
 	public int getTamano() {
@@ -88,7 +97,7 @@ public class Alumnos {
 		Alumno encontrado = null; //si no encuentra cita este método devuelve null.
 		indice=buscarIndice(alumno);
 		if (!tamanoSuperado(indice)) {
-			encontrado=new Alumno(coleccionAlumnos[indice]);//obtengo una copia de la cita
+			encontrado=new Alumno(coleccionAlumnos[indice]);//
 		}
 
 		return encontrado; //devuelvo una copia de la cita encontrada

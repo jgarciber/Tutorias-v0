@@ -4,19 +4,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Alumno {
-	static final String ER_NOMBRE ="[a-zA-Z]+";
-	static final String PREFIJO_EXPEDIENTE ="SP_";
-	static final String ER_CORREO  = ".+@[a-zA-Z]+\\.[a-zA-Z]+";
-	static int ultimoIdentificador=1;
-	String nombre;
-	String correo;
-	String expediente;
+	private static final String ER_NOMBRE ="[a-zA-ZáéíóúüÁÉÍÓÓÜ]+";
+
+	
+	//DUDAAAAAAAAAAAAAAAAAAAAAAAAAAA
+	
+	//static final String ER_NOMBRE ="[a-zA-ZáéíóúÁÉÍÓÚ]+(\\s+[a-zA-ZáíéóúÁÉÍÓÚ]+)+";
+	private static final String PREFIJO_EXPEDIENTE ="SP_";
+	//DUDAAAAAAAAAAAAAAAAAAAAAAAAAAA ¿no se aplica formato al inicio del correo? empieza directamente con .@
+	private static final String ER_CORREO  = ".+@[a-zA-Z]+\\.[a-zA-Z]+";
+	private static int ultimoIdentificador=0;
+	private String nombre;
+	private String correo;
+	private String expediente;
 	
 	public Alumno(String nombre, String correo) {
 		setNombre(nombre);
 		setCorreo(correo);
 		setExpediente();
-		incrementaUltimoIdentificador();
 	}
 	
 	public Alumno(Alumno alumno) {
@@ -25,6 +30,7 @@ public class Alumno {
 		}
 		setNombre(alumno.getNombre());
 		setCorreo(alumno.getCorreo());
+		expediente=alumno.getExpediente();
 	}
 	
 	public static Alumno getAlumnoFicticio(String correo) {
@@ -101,7 +107,8 @@ public class Alumno {
 	}
 	
 	public void setExpediente() {
-		this.expediente = PREFIJO_EXPEDIENTE+getIniciales()+"_"+ultimoIdentificador;
+		incrementaUltimoIdentificador();
+		this.expediente = PREFIJO_EXPEDIENTE+getIniciales()+"_"+(ultimoIdentificador);
 	}
 	
 	private static void incrementaUltimoIdentificador() {
@@ -148,7 +155,7 @@ public class Alumno {
 
 	@Override
 	public String toString() {
-		return String.format("nombre=%s (%s), correo=%s, expediente=%s", nombre, getIniciales().toUpperCase(), correo, expediente);
+		return String.format("nombre=%s (%s), correo=%s, expediente=%s", nombre, getIniciales().toUpperCase(), correo,expediente);
 		//return "nombre=" + nombre +" ("+ getIniciales().toUpperCase() + "), correo=" + correo + ", expediente=" + expediente;
 	}
 	

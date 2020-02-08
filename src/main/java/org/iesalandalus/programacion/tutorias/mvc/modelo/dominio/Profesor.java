@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Profesor {
 	 
-	private static final String ER_NOMBRE ="[a-zA-Z]+";
+	private static final String ER_NOMBRE ="[a-zA-ZáéíóúüÁÉÍÓÓÜ]+";
 	private static final String ER_DNI = "([0-9]{8})([A-Za-z])";
 	private static final String ER_CORREO = ".+@[a-zA-Z]+\\.[a-zA-Z]+";
 	

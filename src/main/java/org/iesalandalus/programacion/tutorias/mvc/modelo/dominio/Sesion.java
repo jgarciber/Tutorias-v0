@@ -8,10 +8,12 @@ import java.time.temporal.ChronoUnit;
 
 
 public class Sesion {
-	static final LocalTime HORA_COMIENZO_CLASES = LocalTime.of(16, 00);
-	static final LocalTime HORA_FIN_CLASES = LocalTime.of(22, 15);
-	static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	static final DateTimeFormatter FORMATO_HORA = DateTimeFormatter.ofPattern("HH:mm");
+	public static final LocalTime HORA_COMIENZO_CLASES = LocalTime.of(16, 00);
+	public static final LocalTime HORA_FIN_CLASES = LocalTime.of(22, 15);
+	//He declarado HORA_COMIENZO_CLASES Y HORA_FIN_CLASES como public ya que de lo contrario no se puede acceder al valor de las constantes desde el método setHora de la clase Cita
+
+	public static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	public static final DateTimeFormatter FORMATO_HORA = DateTimeFormatter.ofPattern("HH:mm");
 	
 	private LocalDate fecha;
 	private LocalTime horaInicio ;
@@ -159,7 +161,7 @@ public class Sesion {
 
 	@Override
 	public String toString() {
-		return String.format("tutoria=profesor="+ tutoria.getProfesor().toString() + ", nombre=" + tutoria.getNombre()+ ", fecha=" + fecha.format(FORMATO_FECHA) + ", horaInicio=" + horaInicio.format(FORMATO_HORA) + ", horaFin=" + horaFin.format(FORMATO_HORA) + ", minutosDuracion="+ minutosDuracion);
+		return String.format("tutoria=profesor="+ getTutoria().getProfesor() + ", nombre=" + getTutoria().getNombre()+ ", fecha=" + fecha.format(FORMATO_FECHA) + ", horaInicio=" + horaInicio.format(FORMATO_HORA) + ", horaFin=" + horaFin.format(FORMATO_HORA) + ", minutosDuracion="+ minutosDuracion);
 	}
 	
 	

@@ -2,7 +2,6 @@ package org.iesalandalus.programacion.tutorias.mvc.modelo.negocio;
 
 import javax.naming.OperationNotSupportedException;
 
-import org.iesalandalus.programacion.tutorias.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.tutorias.mvc.modelo.dominio.Sesion;
 import org.iesalandalus.programacion.tutorias.mvc.modelo.dominio.Tutoria;
 
@@ -28,7 +27,7 @@ public class Sesiones {
 	}
 	
 	private Sesion [] copiaProfundaSesiones() {
-		Sesion[] coleccionCopia= new Sesion[tamano];
+		Sesion[] coleccionCopia= new Sesion[capacidad];
 		for (int i=0; i<tamano;i++) {
 			coleccionCopia[i]= new Sesion(coleccionSesiones[i]);
 		}
@@ -36,7 +35,7 @@ public class Sesiones {
 	}
 	
 	public Sesion[] get(Tutoria tutoria) {
-		Sesion[] coleccionCopia= new Sesion[tamano];
+		Sesion[] coleccionCopia= new Sesion[capacidad];
 		for (int i=0; i<tamano;i++) {
 			if(coleccionSesiones[i].getTutoria().equals(tutoria)){
 				coleccionCopia[i]= new Sesion(coleccionSesiones[i]);
@@ -64,7 +63,7 @@ public class Sesiones {
 			throw new OperationNotSupportedException("ERROR: No se aceptan más sesiones.");
 		}else {
 			coleccionSesiones[tamano]=new Sesion(sesion); 
-			System.out.println("Sesion introducida correctamente.");
+			System.out.println("Sesión introducida correctamente.");
 			tamano++;
 		}		
 	}
@@ -120,7 +119,7 @@ public class Sesiones {
 		indice=buscarIndice(sesion);
 		if (!tamanoSuperado(indice)) {
 			desplazarUnaPosicionHaciaIzquierda(indice);
-			System.out.println("Sesion borrada correctamente.");
+			System.out.println("Sesión borrada correctamente.");
 			tamano--;
 		}else {
 			throw new OperationNotSupportedException("ERROR: No existe ninguna sesión con esa fecha.");
